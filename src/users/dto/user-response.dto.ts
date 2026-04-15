@@ -17,7 +17,7 @@ export class UserResponseDto {
   @Exclude()
   password: string;
 
-  constructor(partial: Partial<UserResponseDto>) {
+  constructor(partial: Partial<UserResponseDto> = {}) {
     Object.assign(this, partial);
   }
 }

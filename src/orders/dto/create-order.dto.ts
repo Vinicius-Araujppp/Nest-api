@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsArray, ArrayMinSize, ValidateNested } from 'class-validator';
+import { IsNotEmpty, IsArray, ArrayMinSize, ValidateNested, IsInt, Min } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class OrderItemDto {
@@ -8,6 +8,8 @@ export class OrderItemDto {
   productId: string;
 
   @ApiProperty({ example: 2, description: 'Quantidade' })
+  @IsInt({ message: 'Quantidade deve ser um número inteiro' })
+  @Min(1, { message: 'Quantidade deve ser no mínimo 1' })
   @IsNotEmpty({ message: 'Quantidade é obrigatória' })
   quantity: number;
 }
