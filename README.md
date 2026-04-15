@@ -42,6 +42,6 @@ Diferente de CRUDS básicos, este projeto implementa padrões de nível produç�
 
 ### 1. Instalação
 ```bash
-git clone [https://github.com/seu-usuario/ecommerce-api.git](https://github.com/seu-usuario/ecommerce-api.git)
+git clone [https://github.com/seu-usuario/Nestapi.git](https://github.com/seu-usuario/Nestapi.git)
 cd ecommerce-api
 npm install
