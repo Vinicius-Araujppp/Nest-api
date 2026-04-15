@@ -1,115 +1,47 @@
-# 🛒 E-commerce API - NestJS + Prisma + MongoDB
+# 🛒 E-commerce Engine API
+> Robust Backend de E-commerce construído com a arquitetura modular do NestJS, Prisma ORM e persistência em MongoDB.
 
-API REST completa para sistema de E-commerce desenvolvida com **NestJS**, **Prisma ORM** e **MongoDB**, focada em boas práticas de arquitetura backend e pronta para portfólio profissional.
+![NestJS](https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-## 🚀 Tecnologias
+Esta API foi desenvolvida seguindo os princípios de **Clean Code** e **SOLID**, focando em escalabilidade e segurança para operações críticas de checkout e gestão de produtos.
 
-- **[NestJS](https://nestjs.com/)** - Framework Node.js progressivo
-- **[Prisma ORM](https://www.prisma.io/)** - ORM moderno para TypeScript
-- **[MongoDB](https://www.mongodb.com/)** - Banco de dados NoSQL
-- **[JWT](https://jwt.io/)** - Autenticação via JSON Web Token
-- **[Bcrypt](https://www.npmjs.com/package/bcrypt)** - Hash de senhas
-- **[Swagger](https://swagger.io/)** - Documentação automática da API
-- **[Class Validator](https://github.com/typestack/class-validator)** - Validação de DTOs
+---
 
-## ✨ Funcionalidades
+## 🎯 Diferenciais Técnicos
 
-### 🔐 Autenticação
-- ✅ Registro de usuários com validação
-- ✅ Login com JWT
-- ✅ Proteção de rotas com Guards
-- ✅ Decorators customizados (@Public, @CurrentUser)
+Diferente de CRUDS básicos, este projeto implementa padrões de nível produção:
 
-### 👥 Usuários
-- ✅ CRUD completo de usuários
-- ✅ Hash de senhas com Bcrypt
-- ✅ Validação de email único
+* **Pattern-based Architecture:** Estrutura modular para facilitar a manutenção e testes unitários.
+* **Data Integrity:** Uso de transações para garantir que a redução de estoque e a criação do pedido ocorram de forma atômica.
+* **Security First:** Implementação de `Passport Strategy` com JWT, Hasheamento `Bcrypt` e sanitização de inputs via `class-validator`.
+* **API Documentation:** Documentação viva via **Swagger (OpenAPI 3.0)**, permitindo testes de endpoints diretamente pelo browser.
 
-### 📦 Produtos
-- ✅ CRUD completo de produtos
-- ✅ Controle de estoque
-- ✅ Listagem pública de produtos
+---
 
-### 🛍️ Pedidos
-- ✅ Criação de pedidos com múltiplos itens
-- ✅ Validação de estoque automática
-- ✅ Cálculo automático do total
-- ✅ Atualização de estoque em transação
-- ✅ Histórico de pedidos por usuário
+## 🛠️ Stack Tecnológica
 
-## 📦 Instalação
+| Camada | Tecnologia | Papel |
+| :--- | :--- | :--- |
+| **Runtime** | Node.js (v18+) | Ambiente de execução |
+| **Framework** | NestJS | Estrutura modular e injeção de dependência |
+| **Database** | MongoDB | Persistência de dados NoSQL |
+| **ORM** | Prisma | Modelagem de dados e Type Safety |
+| **Auth** | JWT + Passport | Autenticação e autorização |
+| **Docs** | Swagger | Especificação e interface da API |
 
+---
+
+## ⚙️ Configuração do Ambiente
+
+### Pré-requisitos
+- Node.js instalado
+- Instância do MongoDB (Local ou Atlas)
+
+### 1. Instalação
 ```bash
-# Instalar dependências
+git clone [https://github.com/seu-usuario/ecommerce-api.git](https://github.com/seu-usuario/ecommerce-api.git)
+cd ecommerce-api
 npm install
-
-# Gerar Prisma Client
-npx prisma generate
-```
-
-## ⚙️ Configuração
-
-Crie um arquivo `.env` na raiz do projeto:
-
-```env
-# Database
-DATABASE_URL="mongodb://localhost:27017/ecommerce"
-
-# JWT
-JWT_SECRET="your-super-secret-jwt-key"
-
-# Server
-PORT=3000
-
-# Frontend URL (for CORS)
-FRONTEND_URL="http://localhost:3001"
-```
-
-## 🚀 Executar
-
-```bash
-# development
-npm run start:dev
-
-# production
-npm run build
-npm run start:prod
-```
-
-A API estará disponível em: `http://localhost:3000`
-
-## 📚 Documentação Swagger
-
-Acesse a documentação interativa da API em:
-
-**http://localhost:3000/api/docs**
-
-## 🔌 Endpoints Principais
-
-### Autenticação
-- `POST /auth/register` - Registrar usuário
-- `POST /auth/login` - Login
-- `GET /auth/me` - Dados do usuário autenticado
-
-### Produtos
-- `GET /products` - Listar produtos (público)
-- `POST /products` - Criar produto (autenticado)
-
-### Pedidos
-- `POST /orders` - Criar pedido (autenticado)
-- `GET /orders` - Listar seus pedidos (autenticado)
-
-## 🏗️ Arquitetura
-
-```
-src/
-├── auth/              # Autenticação JWT
-├── users/             # Gerenciamento de usuários
-├── products/          # Gerenciamento de produtos
-├── orders/            # Gerenciamento de pedidos
-└── prisma/            # Database service
-```
-
-## 📝 Licença
-
-MIT
