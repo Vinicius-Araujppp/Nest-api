@@ -4,7 +4,6 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -13,7 +12,6 @@ model User {
   password  String
   name      String
   createdAt DateTime @default(now())
-
   orders    Order[]
 }
 
@@ -24,7 +22,6 @@ model Product {
   price       Float
   stock       Int
   createdAt   DateTime    @default(now())
-
   orderItems  OrderItem[]
 }
 
@@ -32,9 +29,8 @@ model Order {
   id        String      @id @default(auto()) @map("_id") @db.ObjectId
   userId    String      @db.ObjectId
   total     Float
-  status    String      @default("pending") // pending, completed, cancelled
+  status    String      @default("pending")
   createdAt DateTime    @default(now())
-
   user       User        @relation(fields: [userId], references: [id])
   orderItems OrderItem[]
 }
@@ -44,9 +40,8 @@ model OrderItem {
   orderId   String   @db.ObjectId
   productId String   @db.ObjectId
   quantity  Int
-  price     Float    // Preço no momento da compra
+  price     Float
   createdAt DateTime @default(now())
-
   order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   product Product @relation(fields: [productId], references: [id])
 }
